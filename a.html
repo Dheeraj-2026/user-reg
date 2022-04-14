@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <title>Task 2</title>
+    <style>
+        body {
+            color: white;
+            background-color: rgb(50, 7, 78);
+        }
+
+        h1 {
+            color: rgb(255, 61, 100);
+        }
+
+        label {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 35;
+            color: white;
+        }
+
+        input[type=text] {
+            width: 400;
+            height: 35;
+            color: Black;
+            font-size: 30;
+        }
+
+        input[type=email] {
+            width: 400;
+            height: 35;
+            color: Black;
+            font-size: 30;
+        }
+
+        input[type=password] {
+            width: 400;
+            height: 35;
+            color: rgb(19, 5, 5);
+            font-size: 30;
+        }
+
+        input[type=submit] {
+            background-color: rgb(23, 228, 23);
+            color: blueviolet;
+            font-family: monospace;
+            font-size: 30;
+            height: 45;
+            width: 200;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>USER REGISTRATION FORM</h1>
+    </center>
+    <form onSubmit="return validate()">
+        <pre>
+                <label>First Name *               : </label><input type = "text" id = "x1"><p id = "p1"></p><br><br>
+                <label>Last Name                 : </label><input type = "text" id = "x2"><br><br><br>
+                <label>E-mail ID *                 : </label><input type = "text" id ="x3"><p id = "p3"></p><br><br>
+                <label>Password *                : </label><input type = "password" id = "x4"><p id = "p4"></p><br><br>
+                <label>Confirm Password *   : </label><input type = "password" id = "x5"><p id = "p5"></p><br><br>
+                <center><bold><input type = "Submit"></bold></center>
+        </pre>
+    </form>
+</body>
+<script>
+    // var regex = /^\w+([\.-]?\w+)*@\w+([/.-]?\w+)*(\.\w{2,3})+$/;
+    function validate() {
+        var fname = document.getElementById("x1").value;
+        if(fname == "") {
+            document.getElementById("p1").innerHTML = "This field is Mandatory";
+            return false;
+        }
+        var email = document.getElementById("x3").value;
+        if(email == "") {
+            document.getElementById("p1").innerHTML = null;
+            document.getElementById("p3").innerHTML = "This field is Mandatory";
+            return false;
+        }
+        var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(!regex.test(email)) {
+            document.getElementById("p3").innerHTML = "Invalid format of email id";
+            return false;
+        }
+        document.getElementById("p3").innerHTML = "";
+        var pwd = document.getElementById("x4").value;
+        if(pwd == "") {
+            document.getElementById("p3").innerHTML = null;
+            document.getElementById("p4").innerHTML = "This field is Mandatory";
+            return false;
+        }
+        var cpwd = document.getElementById("x5").value;
+        if(cpwd == "") {
+            document.getElementById("p4").innerHTML = null;
+            document.getElementById("p5").innerHTML = "This field is Mandatory";
+            return false;
+        }
+        if(pwd != cpwd) {
+            alert("Please make sure the password is same");
+            return false;
+        }
+        else if(pwd == cpwd && pwd != "") {
+            document.getElementById("p4").innerHTML = null;
+            document.getElementById("p5").innerHTML = "Passwords Matched";
+            return false;
+        }
+
+    }
+</script>
+
+</html>
